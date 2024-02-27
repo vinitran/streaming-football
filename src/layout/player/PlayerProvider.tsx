@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import styled from "styled-components";
 import Hls from "hls.js";
-import player, {
+import {
     resetPlayer,
     setBuffer,
     setFullscreen,

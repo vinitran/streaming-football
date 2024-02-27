@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import useInfiniteScroll from "react-infinite-scroll-hook";
-import { GetStaticProps } from "next";
 import { Opener } from "../layout/shared/Opener";
-import { AppState, REDUX_INITIAL_STATE, useAppSelector } from "@lib/redux";
-import { TrendingSlider } from "../layout/shared/TrendingSlider/TrendingSlider";
-import { fetchGenrePage, INFINITE_SCROLL_SKIP } from "@lib/redux/reducer/genre";
-import { BasicSlider } from "../layout/shared/BasicSlider/BasicSlider";
 import { useWatchlist } from "@lib/watchlist/context";
 import { Spinner } from "../layout/shared/Spinner";
-import { useDispatch } from "react-redux";
 import { Meta } from "@lib/meta";
 import { MatchCard } from "src/layout/shared/Home/Card";
 
@@ -72,7 +65,7 @@ const Home: React.FC<HomeProps> = () => {
                     <WrapperList>
                         {matches?.data.map(item => (
                             // item.is_live &&
-                            <MatchCard data={item} />
+                            <MatchCard data={item} key={item.id} />
                         ))}
                     </WrapperList>
                 </PageWrapper>

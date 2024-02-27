@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Card } from "./Card/Card";
 import { aspectRatio, fillParent } from "@css/helper";
 import { text } from "@css/typography";
-import { useWatchlist } from "@lib/watchlist/context";
 
 const TeaserWrapper = styled.div`
     padding: 0 2rem;
@@ -46,8 +44,6 @@ interface CardTeaserProps {
 }
 
 export const CardTeaser: React.FC<CardTeaserProps> = ({ headline, shows }) => {
-    const { hasShowProgress, isShowActive, addShowToWatchlist } = useWatchlist();
-
     return (
         <TeaserWrapper>
             {headline && <TeaserHeadline>{headline}</TeaserHeadline>}
@@ -55,12 +51,6 @@ export const CardTeaser: React.FC<CardTeaserProps> = ({ headline, shows }) => {
                 {shows.slice(0, 6).map(show => (
                     <TeaserCard key={show.id}>
                         <TeaserCardInner>
-                            <Card
-                                {...show}
-                                progress={hasShowProgress(show.id)}
-                                watchlistActive={isShowActive(show.id)}
-                                onWatchlist={() => addShowToWatchlist(show)}
-                            />
                         </TeaserCardInner>
                     </TeaserCard>
                 ))}

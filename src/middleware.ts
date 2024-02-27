@@ -1,17 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import { COOKIE_PROFILE } from "@lib/cookie";
+import { NextResponse } from "next/server";
 
-const PUBLIC_FILE = /\.(.*)$/;
-
-const shouldHandleRequest = (path: string): boolean => {
-    return !PUBLIC_FILE.test(path) && !path.startsWith("/api") && !path.startsWith("/_next");
-};
-
-const isProfile = (path: string) => {
-    return path.startsWith("/profile");
-};
-
-export default async function middleware(req: NextRequest) {
+export default async function middleware() {
     const res = NextResponse.next();
     // const url = req.nextUrl.clone();
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
 import { useAppSelector } from "@lib/redux";
@@ -7,7 +7,6 @@ import { checkBrowserCompatibility } from "@lib/browser";
 import { fillParent } from "@css/helper";
 import { Player } from "../../layout/player/Player";
 import { Content } from "@css/helper/content";
-import { Meta } from "@lib/meta";
 
 const PlayerWrapper = styled.div``;
 

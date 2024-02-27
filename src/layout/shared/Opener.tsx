@@ -1,6 +1,5 @@
-import React, { useMemo } from "react";
+import React from "react";
 import styled from "styled-components";
-import { text } from "@css/typography";
 import { Content } from "@css/helper/content";
 import { Image } from "@lib/image";
 
@@ -26,10 +25,6 @@ const OpenerBackground = styled.div`
     height: 100%;
 `;
 
-const OpenerGenres = styled.div`
-    color: ${p => p.theme.gray800};
-`;
-
 const OpenerText = styled.div`
     max-width: 60rem;
     margin-top: 1rem;
@@ -45,21 +40,7 @@ const AccentOverlay = styled.div`
     background: linear-gradient(0deg, ${p => p.theme.gray50} 0%, transparent 100%);
 `;
 
-const OpenerControls = styled.div`
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 2rem;
-`;
-
 const OpenerContent = styled(Content)``;
-
-const OpenerTitle = styled.h1`
-    ${text("displayLg", "black")};
-
-    ${p => p.theme.breakpoints.min("m")} {
-        ${text("display2Xl", "black")};
-    }
-`;
 
 export const Opener = () => {
     return (
