@@ -91,30 +91,30 @@ export const MatchCard: React.FC<MatchCardProps> = ({ data }) => {
         </Link>
         :
         <MatchBlock>
-                <WrapperTeam>
-                    <LogoWrapper>
-                        <Logo>
-                            <img src={data.home.logo} />
-                        </Logo>
-                    </LogoWrapper>
-                    <div>{data.home.name}</div>
-                </WrapperTeam>
-                <WrapperTime>
-                    <div>
-                        {`${data.date.substring(6,8)}/${data.date.substring(4,6)}/${data.date.substring(0,4)}`}
-                    </div>
-                    <div>
-                        {`${time.getHours()}:${time.getMinutes().toString().padStart(2, '0')}`}
-                    </div>
-                </WrapperTime>
-                <WrapperTeam>
-                    <LogoWrapper>
-                        <Logo>
-                            <img src={data.away.logo} />
-                        </Logo>
-                    </LogoWrapper>
-                    <div>{data.away.name}</div>
-                </WrapperTeam>
-            </MatchBlock>
+            <WrapperTeam>
+                <LogoWrapper>
+                    <Logo>
+                        <img src={data.home.logo} />
+                    </Logo>
+                </LogoWrapper>
+                <div>{data.home.name}</div>
+            </WrapperTeam>
+            <WrapperTime>
+                <div>
+                    {`${data.date.substring(6,8)}/${data.date.substring(4,6)}/${data.date.substring(0,4)}`}
+                </div>
+                <div>
+                    {`${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`}
+                </div>
+            </WrapperTime>
+            <WrapperTeam>
+                <LogoWrapper>
+                    <Logo>
+                        <img src={data.away.logo} />
+                    </Logo>
+                </LogoWrapper>
+                <div>{data.away.name}</div>
+            </WrapperTeam>
+        </MatchBlock>
     );
 };
