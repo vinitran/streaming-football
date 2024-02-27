@@ -37,15 +37,15 @@ const Watch: React.FC<WatchProps> = ({ show, browserCompatible }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const waiting = useAppSelector(state => state.player.waiting);
    
-    if (!browserCompatible)
-        return (
-            <PlayerIncompatible>
-                <Content>
-                    Your device/browser seems to be incompatible. Please download our app for the
-                    best experience!
-                </Content>
-            </PlayerIncompatible>
-        );
+    // if (!browserCompatible)
+    //     return (
+    //         <PlayerIncompatible>
+    //             <Content>
+    //                 Your device/browser seems to be incompatible. Please download our app for the
+    //                 best experience!
+    //             </Content>
+    //         </PlayerIncompatible>
+    //     );
 
     return (
         <PlayerWrapper ref={containerRef}>
