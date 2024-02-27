@@ -102,13 +102,17 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             return;
         }
 
-        const hls = new Hls();
+        const hls = new Hls({
+            xhrSetup: xhr => {
+                xhr.setRequestHeader("ngrok-skip-browser-warning", 'true') 
+            }
+        })
         hls.loadSource(proxyUrl);
         hls.attachMedia(videoRef.current);
-        const progress = hasShowProgress(show.id);
-        if (progress) {
-            videoRef.current.currentTime = progress;
-        }
+        // const progress = hasShowProgress(show.id);
+        // if (progress) {
+        //     videoRef.current.currentTime = progress;
+        // }
 
         if (videoRef.current.paused) {
             videoRef.current.play();

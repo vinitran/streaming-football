@@ -51,7 +51,6 @@ const WrapperScore = styled.div`
     margin: 0px 0px;
 `;
 
-
 interface MatchCardProps {
     data: MatchModule.Matchs;
 }
