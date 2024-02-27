@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getEpisodesBySeason } from "@lib/api/tmdb";
 import { AppState } from "../index";
 
 interface SeasonsState {

@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import styled from "styled-components";
 import Hls from "hls.js";
-import {
+import player, {
     resetPlayer,
     setBuffer,
     setFullscreen,
@@ -23,8 +23,9 @@ import { createContext, useContext } from "react";
 import { PlayerProps } from "./Player";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@lib/redux";
+import { useRouter } from "next/router";
 
-const HLS_VIDEO_SRC = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8";
+
 export const HLS_VIDEO_DURATION = 888;
 
 interface PlayerContextData {
@@ -52,6 +53,11 @@ const Video = styled.video`
     user-select: none;
 `;
 
+interface Match {
+    status: number
+    data: MatchDetailModule.Data
+}
+
 export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
     show,
     fullscreenContainer,
@@ -63,23 +69,44 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [controlsActive, setControlsActive] = useState<boolean>(false);
+    const router = useRouter();
+    const [matche, setMatche] = useState<Match | null>(null);
 
     useEffect(() => {
-        if (!videoRef.current || watchlistLoading) {
+        const { identifier } = router.query;
+
+        const fetchData = async () => {
+        try {
+            const response = await fetch(`https://api.vebo.xyz/api/match/${identifier}/meta`);
+            const data = await response.json();
+        
+            setMatche(data); // Assuming the API returns an array of matches
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+        };
+        fetchData();
+        console.log("asdasd")
+    }, []);
+
+    useEffect(() => {
+        if (!videoRef.current || watchlistLoading || !matche) {
             return;
         }
 
+        const url = matche?.data.play_urls[0].url as string
+        const updatedUrl = url ? url.replace('playlist.m3u8', 'chunklist.m3u8') : '';
+        const proxyUrl = `http://localhost:3030/hls/m3u8?url=${updatedUrl}`
+
         if (!Hls.isSupported()) {
-            videoRef.current.src = HLS_VIDEO_SRC;
+            videoRef.current.src = proxyUrl;
             return;
         }
 
         const hls = new Hls();
-        hls.loadSource(HLS_VIDEO_SRC);
+        hls.loadSource(proxyUrl);
         hls.attachMedia(videoRef.current);
-
         const progress = hasShowProgress(show.id);
-
         if (progress) {
             videoRef.current.currentTime = progress;
         }
@@ -96,7 +123,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             hls.destroy();
             dispatch(resetPlayer());
         };
-    }, [watchlistLoading, addProgressToWatchlist, dispatch, hasShowProgress, show]);
+    }, [watchlistLoading, addProgressToWatchlist, dispatch, hasShowProgress, show, matche]);
 
     const interact = useCallback(() => {
         setControlsActive(true);
@@ -197,7 +224,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             return 0;
         }
 
-        const buffer = videoRef.current.buffered.end(videoRef.current.buffered.length - 1) || 0;
+        const buffer =  0;
 
         return buffer / videoRef.current.duration;
     }, []);

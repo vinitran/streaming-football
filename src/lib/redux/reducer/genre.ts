@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppState } from "../index";
-import { getShowsByGenre } from "@lib/api/tmdb";
 import { recordArrayToRecord } from "@lib/util";
 
 export const INFINITE_SCROLL_SKIP = 4;

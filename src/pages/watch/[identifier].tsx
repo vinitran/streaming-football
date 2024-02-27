@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { GetServerSideProps } from "next";
 import { getShowById } from "@lib/api/tmdb";
@@ -9,6 +9,7 @@ import { fillParent } from "@css/helper";
 import { Player } from "../../layout/player/Player";
 import { Content } from "@css/helper/content";
 import { Meta } from "@lib/meta";
+import { useRouter } from "next/router";
 
 const PlayerWrapper = styled.div``;
 
@@ -31,11 +32,14 @@ interface WatchProps {
     show: Api.TVDetails;
     browserCompatible: boolean;
 }
+//
+
+
 
 const Watch: React.FC<WatchProps> = ({ show, browserCompatible }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const waiting = useAppSelector(state => state.player.waiting);
-
+   
     if (!browserCompatible)
         return (
             <PlayerIncompatible>
@@ -75,6 +79,8 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
             notFound: true,
         };
     }
+
+    console.log("id", id)
 
     const compatible = checkBrowserCompatibility(ctx);
 

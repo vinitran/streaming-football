@@ -65,17 +65,8 @@ export const Navigation: React.FC = () => {
             <div className={fullWidthClassName}>
                 <NavigationInner>
                     <LogoLink href="/" passHref>
-                        Stream<LogoMark>.</LogoMark>
+                        Vinitran.com<LogoMark>.</LogoMark>
                     </LogoLink>
-                    <NavigationGroup>
-                        <NavigationSearch
-                            href="/search"
-                            passHref
-                            $active={pathname.startsWith("/search")}>
-                            <SearchIcon />
-                        </NavigationSearch>
-                        <NavigationAvatar />
-                    </NavigationGroup>
                 </NavigationInner>
             </div>
         </NavigationWrapper>

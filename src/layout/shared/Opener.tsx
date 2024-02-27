@@ -1,13 +1,8 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { text } from "@css/typography";
-import { Button } from "./Button";
-import { usePreload } from "@lib/hook/usePreload";
-import { genresToString } from "@lib/genre";
-import { truncateString } from "@lib/util";
-import { useNProgress } from "@lib/context/nprogress";
-import { getPosterUrl, Image } from "@lib/image";
 import { Content } from "@css/helper/content";
+import { Image } from "@lib/image";
 
 const OpenerWrapper = styled.div`
     position: relative;
@@ -36,7 +31,7 @@ const OpenerGenres = styled.div`
 `;
 
 const OpenerText = styled.div`
-    max-width: 50rem;
+    max-width: 60rem;
     margin-top: 1rem;
 `;
 
@@ -66,33 +61,14 @@ const OpenerTitle = styled.h1`
     }
 `;
 
-export const Opener: React.FC<Api.TVDetails> = ({ id, name, backdrop_path, overview, genres }) => {
-    const preload = usePreload(id);
-    const { startProgress } = useNProgress();
-
-    const featuredGenres = useMemo(() => {
-        return genresToString(genres);
-    }, [genres]);
-
+export const Opener = () => {
     return (
-        <OpenerWrapper onMouseEnter={preload.onMouseEnter} onMouseLeave={preload.onMouseLeave}>
+        <OpenerWrapper >
             <OpenerContent>
-                <OpenerTitle as="h1">{name}</OpenerTitle>
-                <OpenerGenres>{featuredGenres}</OpenerGenres>
-                <OpenerText>{truncateString(overview, 225)}</OpenerText>
-                <OpenerControls>
-                    <Button action={`/watch/${id}`} scroll={false} onLink={startProgress}>
-                        Play
-                    </Button>
-                    <Button action={preload.onClick} isSecondary>
-                        More info
-                    </Button>
-                </OpenerControls>
+                <OpenerText>"Chào mừng bạn đến với Vinitran.com - Nơi xem bóng đá miễn phí dành cho bạn bè, không có mục đích thương mai! Website mang đến cho bạn những trận đấu hấp dẫn từ khắp nơi trên thế giới. Thưởng thức ngay và cùng chia sẻ đam mê bóng đá ngay hôm nay! "</OpenerText>
             </OpenerContent>
             <OpenerBackground>
-                {backdrop_path && (
-                    <Image src={getPosterUrl(backdrop_path, "original")} alt={name} priority fill />
-                )}
+                <Image alt="poster" src="https://res.cloudinary.com/de5wwikci/image/upload/v1708802621/wallpaperflare.com_wallpaper_sxusl3.jpg"  priority fill />
             </OpenerBackground>
             <AccentOverlay />
         </OpenerWrapper>

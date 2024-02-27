@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppState } from "../index";
-import { getShowById } from "../../api/tmdb";
 
 interface ShowsState {
     entities: Record<number, Api.TVDetails>;
