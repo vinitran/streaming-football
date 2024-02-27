@@ -9,7 +9,6 @@ import { Provider as ReduxProvider } from "react-redux";
 import { useRedux } from "@lib/redux";
 import { Navigation } from "../layout/global/Navigation/Navigation";
 import { ProfileProvider } from "@lib/context/profile/ProfileProvider";
-import { WatchlistProvider } from "@lib/watchlist/context/WatchlistProvider";
 import { NProgressProvider } from "@lib/context/nprogress/NProgressProvider";
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
@@ -18,11 +17,9 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
             <ThemeProvider theme={theme}>
                 <NProgressProvider>
                     <ProfileProvider>
-                        <WatchlistProvider>
                             <GlobalStyle />
                             <Navigation />
                             <Component {...pageProps} />
-                        </WatchlistProvider>
                     </ProfileProvider>
                 </NProgressProvider>
             </ThemeProvider>

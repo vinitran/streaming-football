@@ -119,10 +119,6 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
         }
 
         return () => {
-            if (hls.media) {
-                addProgressToWatchlist(show, hls.media.currentTime);
-            }
-
             hls.destroy();
             dispatch(resetPlayer());
         };
