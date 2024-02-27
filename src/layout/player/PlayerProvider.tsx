@@ -38,6 +38,46 @@ interface PlayerContextData {
     jumpToAbs: (abs: number) => void;
 }
 
+
+// {
+//     "name": "SD1",
+//     "cdn": "custom",
+//     "url": "https://vb90xltcvg.nsnd.live/live/_definst_/stream_1_1bda7@may1SD/playlist.m3u8",
+//     "role": "guest"
+// },
+// {
+//     "name": "SD2",
+//     "cdn": "custom",
+//     "url": "https://live-kh-1123139281.thapcam.link/may1SD/playlist.m3u8",
+//     "role": "guest"
+// },
+// {
+//     "name": "HD",
+//     "cdn": "custom",
+//     "url": "https://live-eu-cizve9esipliv.thapcam.link/may1HD/index.m3u8",
+//     "role": "guest"
+// },
+// {
+//     "name": "FHD",
+//     "cdn": "custom",
+//     "url": "https://obevcimanyd179249207.thapcam.link/live/may1FHD/playlist.m3u8",
+//     "role": "guest"
+// }
+
+const getVideoUrl = (data: MatchDetailModule.PlayUrl[]) : string => {
+    const fullHd = data.find(element => element.name === "FHD");
+    if (fullHd !== undefined) {
+        return  fullHd.url;
+    }
+    const hD = data.find(element => element.name === "HD");
+    if (hD !== undefined) {
+        return  hD.url;
+    }
+    return data[0].url;
+    
+
+}
+
 const PlayerContext = createContext<PlayerContextData>({} as PlayerContextData);
 
 const Video = styled.video`
@@ -93,7 +133,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             return;
         }
 
-        const url = matche?.data.play_urls[0].url as string;
+        const url = getVideoUrl(matche?.data.play_urls);
         const updatedUrl = url ? url.replace("playlist.m3u8", "chunklist.m3u8") : "";
         const proxyUrl = `https://3086-118-70-16-46.ngrok-free.app/hls/m3u8?url=${updatedUrl}`;
 
