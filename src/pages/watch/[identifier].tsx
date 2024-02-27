@@ -4,9 +4,7 @@ import { GetServerSideProps } from "next";
 import { useAppSelector } from "@lib/redux";
 import { Spinner } from "../../layout/shared/Spinner";
 import { checkBrowserCompatibility } from "@lib/browser";
-import { fillParent } from "@css/helper";
 import { Player } from "../../layout/player/Player";
-import { Content } from "@css/helper/content";
 
 const PlayerWrapper = styled.div``;
 
@@ -17,13 +15,13 @@ const SpinnerWrapper = styled.div`
     left: 50%;
 `;
 
-const PlayerIncompatible = styled.div`
-    ${fillParent};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-`;
+// const PlayerIncompatible = styled.div`
+//     ${fillParent};
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     text-align: center;
+// `;
 
 interface WatchProps {
     show: Api.TVDetails;
@@ -33,7 +31,7 @@ interface WatchProps {
 
 
 
-const Watch: React.FC<WatchProps> = ({ show, browserCompatible }) => {
+const Watch: React.FC<WatchProps> = ({ show }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const waiting = useAppSelector(state => state.player.waiting);
    
