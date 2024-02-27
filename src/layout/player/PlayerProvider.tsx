@@ -95,7 +95,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
 
         const url = matche?.data.play_urls[0].url as string;
         const updatedUrl = url ? url.replace("playlist.m3u8", "chunklist.m3u8") : "";
-        const proxyUrl = `http://localhost:3030/hls/m3u8?url=${updatedUrl}`;
+        const proxyUrl = `https://3086-118-70-16-46.ngrok-free.app/hls/m3u8?url=${updatedUrl}`;
 
         if (!Hls.isSupported()) {
             videoRef.current.src = proxyUrl;
