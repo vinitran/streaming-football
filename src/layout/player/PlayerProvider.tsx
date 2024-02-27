@@ -90,7 +90,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
     }, []);
 
     useEffect(() => {
-        if (!videoRef.current || watchlistLoading || !matche) {
+        if (!videoRef.current || watchlistLoading || !matche || matche?.data.play_urls.length < 1) {
             return;
         }
 

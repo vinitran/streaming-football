@@ -65,7 +65,7 @@ export const Opener = () => {
     return (
         <OpenerWrapper >
             <OpenerContent>
-                <OpenerText>"Chào mừng bạn đến với Vinitran.com - Nơi xem bóng đá miễn phí dành cho bạn bè, không có mục đích thương mai! Website mang đến cho bạn những trận đấu hấp dẫn từ khắp nơi trên thế giới. Thưởng thức ngay và cùng chia sẻ đam mê bóng đá ngay hôm nay! "</OpenerText>
+                <OpenerText>Chào mừng bạn đến với Vinitran.com - Nơi xem bóng đá miễn phí dành cho bạn bè, không có mục đích thương mai! Website mang đến cho bạn những trận đấu hấp dẫn từ khắp nơi trên thế giới. Thưởng thức ngay và cùng chia sẻ đam mê bóng đá ngay hôm nay!</OpenerText>
             </OpenerContent>
             <OpenerBackground>
                 <Image alt="poster" src="https://res.cloudinary.com/de5wwikci/image/upload/v1708802621/wallpaperflare.com_wallpaper_sxusl3.jpg"  priority fill />
