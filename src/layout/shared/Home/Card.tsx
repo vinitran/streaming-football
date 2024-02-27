@@ -5,7 +5,7 @@ import styled from "styled-components";
 const MatchBlock = styled.div`
     background-color: #7a7d82;
     padding: 15px 10px;
-    width:370px;
+    width: 370px;
     margin: 20px 20px;
     border-radius: 10px;
     align-items: center;
@@ -14,8 +14,8 @@ const MatchBlock = styled.div`
 `;
 
 const Logo = styled.div`
-    width:auto;
-    height:100%;
+    width: auto;
+    height: 100%;
 `;
 
 const LogoWrapper = styled.div`
@@ -34,34 +34,29 @@ const WrapperTeam = styled.div`
     justify-content: center;
 `;
 
-
 interface MatchCardProps {
     data: MatchModule.Matchs;
-  }
+}
 
-export const MatchCard: React.FC<MatchCardProps> = ({data}) => {
+export const MatchCard: React.FC<MatchCardProps> = ({ data }) => {
     return (
         <Link href={data.id} as={`/watch/${data.id}`}>
-            <MatchBlock >
+            <MatchBlock>
                 <WrapperTeam>
                     <LogoWrapper>
                         <Logo>
-                            <img src={data.home.logo}/>
+                            <img src={data.home.logo} />
                         </Logo>
                     </LogoWrapper>
-                    <div>
-                        {data.home.name}
-                    </div>
+                    <div>{data.home.name}</div>
                 </WrapperTeam>
                 <WrapperTeam>
                     <LogoWrapper>
                         <Logo>
-                            <img src={data.away.logo}/>
+                            <img src={data.away.logo} />
                         </Logo>
                     </LogoWrapper>
-                    <div>
-                        {data.away.name}
-                    </div>
+                    <div>{data.away.name}</div>
                 </WrapperTeam>
             </MatchBlock>
         </Link>

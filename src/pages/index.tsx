@@ -37,8 +37,8 @@ interface HomeProps {
 }
 
 interface Match {
-    status: number
-    data: MatchModule.Matchs[]
+    status: number;
+    data: MatchModule.Matchs[];
 }
 
 const Home: React.FC<HomeProps> = () => {
@@ -48,13 +48,13 @@ const Home: React.FC<HomeProps> = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-        try {
-            const response = await fetch('https://api.vebo.xyz/api/match/featured');
-            const data = await response.json();
-            setMatches(data); 
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
+            try {
+                const response = await fetch("https://api.vebo.xyz/api/match/featured");
+                const data = await response.json();
+                setMatches(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         };
         fetchData();
     }, []);
@@ -70,9 +70,9 @@ const Home: React.FC<HomeProps> = () => {
                 <PageWrapper>
                     <Opener />
                     <WrapperList>
-                        {matches?.data.map((item) => (
+                        {matches?.data.map(item => (
                             // item.is_live &&
-                            <MatchCard data={item}/>
+                            <MatchCard data={item} />
                         ))}
                     </WrapperList>
                 </PageWrapper>

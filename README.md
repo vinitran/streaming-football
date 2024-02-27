@@ -5,26 +5,32 @@ https://streaming-platform-tmdb.vercel.app/
 ![Preview](public/preview-popup.png)
 
 ## Frontend
-- React.js
-- Next.js
-- Typescript
-- Styled Components
-- Redux
-- Hls.js
+
+-   React.js
+-   Next.js
+-   Typescript
+-   Styled Components
+-   Redux
+-   Hls.js
 
 **Image optimization is disabled due to Fair Use Policy.**
 
 ## Known issues
+
 1. Player isn't properly reset - Solution: Move player store to watch route
 
 ## API
+
 The following api is being utilized: https://developers.themoviedb.org/3/getting-started/introduction
 
 ## Next.js
+
 ### Middleware & Edge Functions
+
 Whether or not a profile has been selected is being checked on the edge at the speed of static to handle a possible redirect.
 
 ## Custom Media Player
+
 The application uses its own custom media player. Because of missing resources audio and subtitle selection are not included.
 
 ![Media Player](public/preview-player.png)

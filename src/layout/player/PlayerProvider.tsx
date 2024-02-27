@@ -25,7 +25,6 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "@lib/redux";
 import { useRouter } from "next/router";
 
-
 export const HLS_VIDEO_DURATION = 888;
 
 interface PlayerContextData {
@@ -54,8 +53,8 @@ const Video = styled.video`
 `;
 
 interface Match {
-    status: number
-    data: MatchDetailModule.Data
+    status: number;
+    data: MatchDetailModule.Data;
 }
 
 export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
@@ -76,17 +75,17 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
         const { identifier } = router.query;
 
         const fetchData = async () => {
-        try {
-            const response = await fetch(`https://api.vebo.xyz/api/match/${identifier}/meta`);
-            const data = await response.json();
-        
-            setMatche(data); // Assuming the API returns an array of matches
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
+            try {
+                const response = await fetch(`https://api.vebo.xyz/api/match/${identifier}/meta`);
+                const data = await response.json();
+
+                setMatche(data); // Assuming the API returns an array of matches
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         };
         fetchData();
-        console.log("asdasd")
+        console.log("asdasd");
     }, []);
 
     useEffect(() => {
@@ -94,9 +93,9 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             return;
         }
 
-        const url = matche?.data.play_urls[0].url as string
-        const updatedUrl = url ? url.replace('playlist.m3u8', 'chunklist.m3u8') : '';
-        const proxyUrl = `http://localhost:3030/hls/m3u8?url=${updatedUrl}`
+        const url = matche?.data.play_urls[0].url as string;
+        const updatedUrl = url ? url.replace("playlist.m3u8", "chunklist.m3u8") : "";
+        const proxyUrl = `http://localhost:3030/hls/m3u8?url=${updatedUrl}`;
 
         if (!Hls.isSupported()) {
             videoRef.current.src = proxyUrl;
@@ -224,7 +223,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             return 0;
         }
 
-        const buffer =  0;
+        const buffer = 0;
 
         return buffer / videoRef.current.duration;
     }, []);
