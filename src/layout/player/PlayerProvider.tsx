@@ -135,18 +135,20 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
 
         const url = getVideoUrl(matche?.data.play_urls);
         const updatedUrl = url ? url.replace("playlist.m3u8", "chunklist.m3u8") : "";
-        const proxyUrl = `https://3086-118-70-16-46.ngrok-free.app/hls/m3u8?url=${updatedUrl}`;
+        const proxyUrl = `https://stream.vinitran1245612.workers.dev?apiurl=${updatedUrl}&is_m3u8=true`;
 
         if (!Hls.isSupported()) {
             videoRef.current.src = proxyUrl;
             return;
         }
 
-        const hls = new Hls({
-            xhrSetup: xhr => {
-                xhr.setRequestHeader("ngrok-skip-browser-warning", 'true') 
-            }
-        })
+        const hls = new Hls(
+        //     {
+        //     xhrSetup: xhr => {
+        //         xhr.setRequestHeader("ngrok-skip-browser-warning", 'true') 
+        //     }
+        // }
+        )
         hls.loadSource(proxyUrl);
         hls.attachMedia(videoRef.current);
         // const progress = hasShowProgress(show.id);
