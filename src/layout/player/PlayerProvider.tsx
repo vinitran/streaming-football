@@ -69,6 +69,10 @@ const getVideoUrl = (data: MatchDetailModule.PlayUrl[]) : string => {
     if (fullHd !== undefined) {
         return  fullHd.url;
     }
+    const fullHd1 = data.find(element => element.name === "FullHD");
+    if (fullHd1 !== undefined) {
+        return  fullHd1.url;
+    }
     const hD = data.find(element => element.name === "HD");
     if (hD !== undefined) {
         return  hD.url;
@@ -134,7 +138,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
         }
 
         const url = getVideoUrl(matche?.data.play_urls);
-        const updatedUrl = url ? url.replace("playlist.m3u8", "chunklist.m3u8") : "";
+        const updatedUrl = url ? url.replace(/playlist\.m3u8|index\.m3u8/g, "chunklist.m3u8") : "";
         const proxyUrl = `https://stream.vinitran1245612.workers.dev?apiurl=${updatedUrl}&is_m3u8=true`;
 
         if (!Hls.isSupported()) {
@@ -142,13 +146,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             return;
         }
 
-        const hls = new Hls(
-        //     {
-        //     xhrSetup: xhr => {
-        //         xhr.setRequestHeader("ngrok-skip-browser-warning", 'true') 
-        //     }
-        // }
-        )
+        const hls = new Hls(        )
         hls.loadSource(proxyUrl);
         hls.attachMedia(videoRef.current);
         // const progress = hasShowProgress(show.id);
