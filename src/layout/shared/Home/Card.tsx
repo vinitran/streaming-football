@@ -12,6 +12,7 @@ const WrapperMatchBlock = styled.div`
     background-color: #7a7d82;
     padding: 15px 10px;
     width: 430px;
+    height: 120px;
     margin: 20px 20px;
     border-radius: 10px;
     position: relative;
