@@ -15,14 +15,6 @@ const SpinnerWrapper = styled.div`
     left: 50%;
 `;
 
-// const PlayerIncompatible = styled.div`
-//     ${fillParent};
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     text-align: center;
-// `;
-
 interface WatchProps {
     show: Api.TVDetails;
     browserCompatible: boolean;

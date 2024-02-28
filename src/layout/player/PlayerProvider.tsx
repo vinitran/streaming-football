@@ -38,32 +38,6 @@ interface PlayerContextData {
     jumpToAbs: (abs: number) => void;
 }
 
-
-// {
-//     "name": "SD1",
-//     "cdn": "custom",
-//     "url": "https://vb90xltcvg.nsnd.live/live/_definst_/stream_1_1bda7@may1SD/playlist.m3u8",
-//     "role": "guest"
-// },
-// {
-//     "name": "SD2",
-//     "cdn": "custom",
-//     "url": "https://live-kh-1123139281.thapcam.link/may1SD/playlist.m3u8",
-//     "role": "guest"
-// },
-// {
-//     "name": "HD",
-//     "cdn": "custom",
-//     "url": "https://live-eu-cizve9esipliv.thapcam.link/may1HD/index.m3u8",
-//     "role": "guest"
-// },
-// {
-//     "name": "FHD",
-//     "cdn": "custom",
-//     "url": "https://obevcimanyd179249207.thapcam.link/live/may1FHD/playlist.m3u8",
-//     "role": "guest"
-// }
-
 const getVideoUrl = (data: MatchDetailModule.PlayUrl[]) : string => {
     const fullHd = data.find(element => element.name === "FHD");
     if (fullHd !== undefined) {
@@ -78,8 +52,6 @@ const getVideoUrl = (data: MatchDetailModule.PlayUrl[]) : string => {
         return  hD.url;
     }
     return data[0].url;
-    
-
 }
 
 const PlayerContext = createContext<PlayerContextData>({} as PlayerContextData);
