@@ -101,11 +101,22 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             }
         };
         fetchData();
-        console.log("asdasd");
     }, []);
 
     useEffect(() => {
-        if (!videoRef.current || watchlistLoading || !matche || matche?.data.play_urls.length < 1) {
+        if (!videoRef.current || watchlistLoading || matche == null ) {
+            return;
+        }
+
+        if (matche?.data == null){
+            return;
+        }
+
+        if (matche?.data.play_urls == null){
+            return;
+        }
+
+        if  (matche?.data.play_urls.length < 1) {
             return;
         }
 
@@ -114,17 +125,17 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
         const proxyUrl = `https://stream.vinitran1245612.workers.dev?apiurl=${updatedUrl}&is_m3u8=true`;
 
         if (!Hls.isSupported()) {
+            videoRef.current.canPlayType('application/vnd.apple.mpegurl');
             videoRef.current.src = proxyUrl;
+            videoRef.current.addEventListener('loadedmetadata', function () {
+                videoRef.current?.play;
+              })
             return;
         }
 
         const hls = new Hls(        )
         hls.loadSource(proxyUrl);
         hls.attachMedia(videoRef.current);
-        // const progress = hasShowProgress(show.id);
-        // if (progress) {
-        //     videoRef.current.currentTime = progress;
-        // }
 
         if (videoRef.current.paused) {
             videoRef.current.play();

@@ -5,6 +5,8 @@ import { useAppSelector } from "@lib/redux";
 import { Spinner } from "../../layout/shared/Spinner";
 import { checkBrowserCompatibility } from "@lib/browser";
 import { Player } from "../../layout/player/Player";
+import { fillParent } from "@css/helper";
+import { Content } from "@css/helper/content";
 
 const PlayerWrapper = styled.div``;
 
@@ -19,24 +21,29 @@ interface WatchProps {
     show: Api.TVDetails;
     browserCompatible: boolean;
 }
-//
 
-//
+const PlayerIncompatible = styled.div`
+    ${fillParent};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+`;
 
 
-const Watch: React.FC<WatchProps> = ({ show }) => {
+const Watch: React.FC<WatchProps> = ({ show, browserCompatible }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const waiting = useAppSelector(state => state.player.waiting);
    
-    // if (!browserCompatible)
-    //     return (
-    //         <PlayerIncompatible>
-    //             <Content>
-    //                 Your device/browser seems to be incompatible. Please download our app for the
-    //                 best experience!
-    //             </Content>
-    //         </PlayerIncompatible>
-    //     );
+    if (!browserCompatible)
+        return (
+            <PlayerIncompatible>
+                <Content>
+                    Your device/browser seems to be incompatible. Please download our app for the
+                    best experience!
+                </Content>
+            </PlayerIncompatible>
+        );
 
     return (
         <PlayerWrapper ref={containerRef}>
