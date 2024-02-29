@@ -130,9 +130,7 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             // videoRef.current.addEventListener('loadedmetadata', function () {
             //     videoRef.current?.play;
             //   })
-            if (videoRef.current.paused) {
-                videoRef.current.play();
-            }
+            videoRef.current.play();
             return () => {
                 dispatch(resetPlayer());
             };
