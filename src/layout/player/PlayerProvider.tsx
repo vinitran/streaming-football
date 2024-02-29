@@ -127,9 +127,12 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
         if (!Hls.isSupported()) {
             videoRef.current.canPlayType('application/vnd.apple.mpegurl');
             videoRef.current.src = proxyUrl;
-            videoRef.current.addEventListener('loadedmetadata', function () {
-                videoRef.current?.play;
-              })
+            // videoRef.current.addEventListener('loadedmetadata', function () {
+            //     videoRef.current?.play;
+            //   })
+            if (videoRef.current.paused) {
+                videoRef.current.play();
+            }
             return () => {
                 dispatch(resetPlayer());
             };
