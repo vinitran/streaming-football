@@ -81,13 +81,13 @@ const Live = styled.div`
 `;
 
 const Tournament = styled.div`
-    font-size: 12px;
+    font-size: 11px;
     background-color: #606060;
-    width:100px;
+    width:150px;
     padding:2px;
     position: absolute;
     border-radius: 0px 0px 10px 10px;
-    left: 38%;
+    left: 33%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,6 +143,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({ data }) => {
         </Link>
         :
         <WrapperMatchBlock>
+            <Tournament>{data.tournament.name}</Tournament>
             <MatchBlock>
                 <WrapperTeam>
                     <LogoWrapper>
