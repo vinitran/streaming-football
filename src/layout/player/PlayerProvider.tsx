@@ -124,13 +124,10 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
         const updatedUrl = url ? url.replace(/playlist\.m3u8|index\.m3u8/g, "chunklist.m3u8") : "";
         const proxyUrl = `https://stream.vinitran1245612.workers.dev?apiurl=${updatedUrl}&is_m3u8=true`;
 
+        videoRef.current.removeAttribute('src');
         if (!Hls.isSupported()) {
             videoRef.current.canPlayType('application/vnd.apple.mpegurl');
-            videoRef.current.src = proxyUrl;
-            // videoRef.current.addEventListener('loadedmetadata', function () {
-            //     videoRef.current?.play;
-            //   })
-            videoRef.current.play();
+            videoRef.current.setAttribute('src', proxyUrl);
             return () => {
                 dispatch(resetPlayer());
             };
