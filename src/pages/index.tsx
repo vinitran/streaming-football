@@ -80,7 +80,7 @@ const Home: React.FC<HomeProps> = () => {
         const intervalId = setInterval(() => {
             console.log("asdasd");
             fetchLiveData();
-          }, 6000); 
+          }, 30000); 
           return () => clearInterval(intervalId);
     }, [inWatch]);
 
