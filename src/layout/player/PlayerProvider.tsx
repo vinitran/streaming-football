@@ -130,13 +130,12 @@ export const PlayerProvider: React.FC<PropsWithChildren<PlayerProps>> = ({
             videoRef.current.addEventListener('loadedmetadata', function () {
                 videoRef.current?.play;
               })
-            if (videoRef.current.paused) {
-                videoRef.current.play();
-            }
-            return;
+            return () => {
+                dispatch(resetPlayer());
+            };
         }
 
-        const hls = new Hls(        )
+        const hls = new Hls()
         hls.loadSource(proxyUrl);
         hls.attachMedia(videoRef.current);
 
