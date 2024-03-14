@@ -15,13 +15,42 @@ const PageLoading = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-`;
+`; 
+
+const BoxContent = styled.div`
+    display: block;
+    background: #1a1d23;
+    font-family: Roboto, Arial;
+    min-height: 100%;
+    color: #eee;
+    overflow-x: hidden;
+    font-size: 14px;
+    line-height: 1.4em;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+`; 
 
 const WrapperList = styled.div`
     display: flex;
+    justify-content: left;
+    margin: 0 -10px;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    margin: 0px -10px 1rem;
+    background: #1a1d23;
+    font-family: Roboto, Arial;
+    min-height: 100%;
+    color: #eee;
+    overflow-x: hidden;
+    font-size: 14px;
+    line-height: 1.4em;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-align: left;
 `;
 interface HomeProps {
     featured: Api.TVDetails;
@@ -94,12 +123,14 @@ const Home: React.FC<HomeProps> = () => {
             ) : (
                 <PageWrapper>
                     <Opener />
-                    <WrapperList>
-                        {matches?.map(item => (
-                            // item.is_live &&
-                            <MatchCard data={item} key={item.id} />
-                        ))}
-                    </WrapperList>
+                    <BoxContent>
+                        <WrapperList>
+                            {matches?.map(item => (
+                                // item.is_live &&
+                                <MatchCard data={item} key={item.id} />
+                            ))}
+                        </WrapperList>
+                    </BoxContent>
                 </PageWrapper>
             )}
         </React.Fragment>

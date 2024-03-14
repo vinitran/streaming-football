@@ -3,19 +3,32 @@ import React from "react";
 import styled from "styled-components";
 
 const MatchBlock = styled.div`
-    align-items: center;
-    justify-content: space-between;
+    padding: 15px 10px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 131px;
 `;
 
 const WrapperMatchBlock = styled.div`
-    background-color: #7a7d82;
-    padding: 15px 10px;
-    width: 430px;
-    height: 120px;
-    margin: 20px 20px;
-    border-radius: 10px;
+    background: #3a3d44;
+    overflow: hidden;
     position: relative;
+    font-size: .95em;
+    position: relative;
+    display: block;
+    width: calc(33.33% - 20px);
+    margin: 0 10px 20px;
+    border-radius: 0.75rem;
+    box-shadow: 0 0 40px 40px rgba(255,255,255,.075) inset;
+
+    @media (max-width: 768px) {
+        width: calc(100% - 20px) !important;
+    }
+
+    @media (max-width: 1079px) {
+        width: calc(50% - 20px)
+    }
 `;
 
 const Logo = styled.div`
@@ -24,74 +37,113 @@ const Logo = styled.div`
 `;
 
 const LogoWrapper = styled.div`
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
-    overflow: hidden;
+    display: inline-block;
+    margin: 0 auto;
+    position: relative;
+    height: 60px;
+    width: 60px;
 `;
 
 const WrapperTeam = styled.div`
-    width: 160px;
-    font-size: 17px;
-    align-items: center;
+    text-align: center;
+    width: calc(50% - 10px - 40px);
+    flex-shrink: 0;
+`;
+
+const TeamName = styled.div`
     display: flex;
-    flex-direction: column;
+    height: 36px;
     justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
 `;
 
 const WrapperTime = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0px 0px;
+    width: 80px;
+    margin: 0 10px 15px;
+    text-align: center;
+    flex-shrink: 0;
+    display: block;
+`;
+
+const Score = styled.div`
+    font-size: 1.8em;
+    font-weight: 600;
+`;
+
+const Status = styled.div`
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-bottom: 7px;
+    display: block;
+    text-align: center;
+`;
+
+const Detail = styled.div`
+    font-size: 1.2em;
+    margin-bottom: 0;
 `;
 
 const WrapperLive = styled.div`
-    display: flex;
-    min-width:50px;
-    font-size: 20px;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    margin: 0px 0px;
+    width: 80px;
+    margin: 0 10px 15px;
+    text-align: center;
+    flex-shrink: 0;
 `;
 
 const WrapperScore = styled.div`
     display: flex;
-    min-width:50px;
-    font-size: 20px;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0px 0px;
+    justify-content: center;
+    margin-bottom: 7px;
+    font-size: .95em;
+`;
+
+const Space = styled.div`
+    padding: 0 10px;
+    color: #8e8f92;
+    font-size: 1.8em;
+    font-weight: 600;
+    display: block;
+
 `;
 
 const Time = styled.div`
-    font-size: 17px;
-    color:#00FF00;
-    margin-top:10px;
+    color: #25ff70; 
+    font-size: 14px;
+    font-weight: 500;
 `;
 
 const Live = styled.div`
-    font-size: 15px;
-    background-color: #FF0000;
-    padding:3px;
     position: absolute;
-    border-radius: 5px;
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 11px;
+    line-height: 1em;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 20px;
+    z-index: 4;
+    background: #f2152d;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px rgba(251,8,64,.5);
 `;
 
 const Tournament = styled.div`
+    display: block;
+    text-align: center;
+`; 
+
+const League = styled.div`
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 0 0 8px 8px;
+    display: inline-block;
+    line-height: 24px;
+    padding: 0 12px;
     font-size: 11px;
-    background-color: #606060;
-    width:150px;
-    padding:2px;
-    position: absolute;
-    border-radius: 0px 0px 10px 10px;
-    left: 33%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top:0%;
+    text-transform: uppercase;
 `;
 
 interface MatchCardProps {
@@ -102,10 +154,14 @@ export const MatchCard: React.FC<MatchCardProps> = ({ data }) => {
     const time = new Date(data.timestamp);
     return (
         data.is_live? 
-        <Link href={data.id} as={`/watch/${data.id}`}>
-            <WrapperMatchBlock>
+        <WrapperMatchBlock>
+            <Link href={data.id} as={`/watch/${data.id}`}>
                 <Live>Live</Live>
-                <Tournament>{data.tournament.name}</Tournament>
+                <Tournament>
+                    <League>
+                        {data.tournament.name}
+                    </League>
+                </Tournament>
                 <MatchBlock>
                     <WrapperTeam>
                         <LogoWrapper>
@@ -113,18 +169,17 @@ export const MatchCard: React.FC<MatchCardProps> = ({ data }) => {
                                 <img src={data.home.logo} />
                             </Logo>
                         </LogoWrapper>
-                        <div>{data.home.name}</div>
+                        <TeamName>{data.home.name}</TeamName>
                     </WrapperTeam>
                     <WrapperLive>
-                        
                         <WrapperScore>
-                            <div>
+                            <Score>
                                 {data.scores.home}
-                            </div>
-                            :
-                            <div>
+                            </Score>
+                            <Space>-</Space>
+                            <Score>
                                 {data.scores.away}
-                            </div>
+                            </Score>
                         </WrapperScore>
                         <Time>
                             {data.parse_data?.time}
@@ -136,14 +191,18 @@ export const MatchCard: React.FC<MatchCardProps> = ({ data }) => {
                                 <img src={data.away.logo} />
                             </Logo>
                         </LogoWrapper>
-                        <div>{data.away.name}</div>
+                        <TeamName>{data.away.name}</TeamName>
                     </WrapperTeam>
                 </MatchBlock>
-            </WrapperMatchBlock>
-        </Link>
+            </Link>
+        </WrapperMatchBlock>
         :
         <WrapperMatchBlock>
-            <Tournament>{data.tournament.name}</Tournament>
+            <Tournament>
+                <League>
+                    {data.tournament.name}
+                </League>
+            </Tournament>
             <MatchBlock>
                 <WrapperTeam>
                     <LogoWrapper>
@@ -151,15 +210,15 @@ export const MatchCard: React.FC<MatchCardProps> = ({ data }) => {
                             <img src={data.home.logo} />
                         </Logo>
                     </LogoWrapper>
-                    <div>{data.home.name}</div>
+                    <TeamName>{data.home.name}</TeamName>
                 </WrapperTeam>
                 <WrapperTime>
-                    <div>
+                    <Status>
                         {`${data.date.substring(6,8)}/${data.date.substring(4,6)}/${data.date.substring(0,4)}`}
-                    </div>
-                    <div>
+                    </Status>
+                    <Detail>
                         {`${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`}
-                    </div>
+                    </Detail>
                 </WrapperTime>
                 <WrapperTeam>
                     <LogoWrapper>
@@ -167,7 +226,7 @@ export const MatchCard: React.FC<MatchCardProps> = ({ data }) => {
                             <img src={data.away.logo} />
                         </Logo>
                     </LogoWrapper>
-                    <div>{data.away.name}</div>
+                    <TeamName>{data.away.name}</TeamName>
                 </WrapperTeam>
             </MatchBlock>
         </WrapperMatchBlock>        
