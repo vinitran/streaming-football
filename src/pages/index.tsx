@@ -22,7 +22,6 @@ const BoxContent = styled.div`
     font-family: Roboto, Arial;
     min-height: 100%;
     color: #eee;
-    overflow-x: hidden;
     font-size: 14px;
     line-height: 1.4em;
     font-weight: 400;
@@ -30,7 +29,31 @@ const BoxContent = styled.div`
     margin: 0;
     text-size-adjust: none;
     -webkit-text-size-adjust: none;
+
+    width: 100% !important;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media (min-width: 1200px) {
+        max-width: 1100px;
+    }
+
+    @media (min-width: 576px) {
+            max-width: 540px;
+    }
+
+    @media (min-width: 768px) {
+        max-width: 750px;
+    }
+
+    @media (min-width: 992px) {
+        max-width: 980px;
+    }
 `; 
+
+
+
+
 
 const WrapperList = styled.div`
     display: flex;

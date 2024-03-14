@@ -22,6 +22,10 @@ const WrapperMatchBlock = styled.div`
     border-radius: 0.75rem;
     box-shadow: 0 0 40px 40px rgba(255,255,255,.075) inset;
 
+    @media (min-width: 1200px) {
+        width: calc(33.33% - 20px) !important;
+    }
+
     @media (max-width: 768px) {
         width: calc(100% - 20px) !important;
     }
