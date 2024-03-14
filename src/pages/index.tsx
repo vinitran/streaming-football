@@ -19,7 +19,6 @@ const PageLoading = styled.div`
 
 const BoxContent = styled.div`
     display: block;
-    background: #1a1d23;
     font-family: Roboto, Arial;
     min-height: 100%;
     color: #eee;
@@ -38,7 +37,6 @@ const WrapperList = styled.div`
     justify-content: left;
     margin: 0 -10px;
     flex-wrap: wrap;
-    background: #1a1d23;
     font-family: Roboto, Arial;
     min-height: 100%;
     color: #eee;
@@ -115,7 +113,10 @@ const Home: React.FC<HomeProps> = () => {
 
     return (
         <React.Fragment>
-            <Meta title="Home" />
+            <Meta 
+                title="Trang VINITRAN.COM livestream bóng đá trực tuyến"
+                description="Xem VINITRAN.COM trực tiếp bóng đá nhanh nhất. Link Vinitran.com bóng đá nhanh miễn phí cùng kết quả, lịch thi đấu mới nhất"
+            />
             {watchlistLoading ? (
                 <PageLoading>
                     <Spinner />
