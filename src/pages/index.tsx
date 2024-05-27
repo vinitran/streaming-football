@@ -5,7 +5,6 @@ import { useWatchlist } from "@lib/watchlist/context";
 import { Spinner } from "../layout/shared/Spinner";
 import { Meta } from "@lib/meta";
 import { MatchCard } from "src/layout/shared/Home/Card";
-import Head from "next/head";
 
 const PageWrapper = styled.div`
     padding-bottom: 12rem;
