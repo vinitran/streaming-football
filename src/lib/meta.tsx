@@ -19,6 +19,8 @@ export const Meta: React.FC<MetaProps> = ({ title, description }) => {
             <meta name="description" content="Xem trực tiếp bóng đá nhanh nhất. Link bóng đá nhanh miễn phí cùng kết quả, lịch thi đấu mới nhất"/>
             <meta name="keywords" content="xem bong da,truc tiep bong da,bong da,xem bong online,link xem bong da,vinitran,vinitran.com,vini"/>
             
+            <link rel="icon" href="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png" sizes="any" />
+            
             <meta property="og:type" content="website" />
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description}/>
